@@ -13,28 +13,49 @@ namespace CollectionsMasterConsoleUI
 
             #region Arrays
             // Create an integer Array of size 50
-            
+            var numbers = new int[50];
 
             //Create a method to populate the number array with 50 random numbers that are between 0 and 50
-            
+            static void ArrayMaker(int[] numbers)
+            {
+                for(var i = 0; i < 50; i++)
+                {
+                    numbers[i] = i;
+                }
+            }
+            ArrayMaker(numbers);
 
             //Print the first number of the array
+            Console.WriteLine(numbers[0]);
 
             //Print the last number of the array            
+            Console.WriteLine(numbers[49]);
 
             Console.WriteLine("All Numbers Original");
             //Use this method to print out your numbers from arrays or lists
-            //NumberPrinter();
+            static void NumberPrinter(int[] numbers)
+            {
+                foreach(var num in numbers)
+                {
+                    Console.WriteLine(num);
+                }
+            }
+            NumberPrinter(numbers);
             Console.WriteLine("-------------------");
 
             //Reverse the contents of the array and then print the array out to the console.
             //Try for 2 different ways
             /*     Hint: Array._____(); Create a custom method     */
-
+            static void RegularReverse(int[] numbers)
+            {
+                Array.Reverse(numbers);
+                Console.WriteLine(string.Join(" ", numbers));
+            }
+            
             Console.WriteLine("All Numbers Reversed:");
-
+            RegularReverse(numbers);
             Console.WriteLine("---------REVERSE CUSTOM------------");
-
+            ReverseArray(numbers);
             Console.WriteLine("-------------------");
 
             //Create a method that will set numbers that are a multiple of 3 to zero then print to the console all numbers
@@ -56,16 +77,16 @@ namespace CollectionsMasterConsoleUI
 
             /*   Set Up   */
             //Create an integer List
-            
+            var numberList = new List<int>();
 
             //Print the capacity of the list to the console
-            
+            Console.WriteLine(numberList.Count);
 
             //Populate the List with 50 random numbers between 0 and 50 you will need a method for this            
-            
+
 
             //Print the new capacity
-            
+            Console.WriteLine(numberList.Count);
 
             Console.WriteLine("---------------------");
 
@@ -126,9 +147,15 @@ namespace CollectionsMasterConsoleUI
 
         }        
 
-        private static void ReverseArray(int[] array)
+        private static void ReverseArray(int[] numbers)
         {
-            
+            for (int i = 0; i < numbers.Length / 2; i++)
+            {
+                int tmp = numbers[i];
+                numbers[i] = numbers[numbers.Length - i - 1];
+                numbers[numbers.Length - i - 1] = tmp;
+            }
+            Console.WriteLine(string.Join(" ", numbers));
         }
 
         /// <summary>
