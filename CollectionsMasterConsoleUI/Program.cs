@@ -19,14 +19,15 @@ namespace CollectionsMasterConsoleUI
             Populater(numbers);
 
             //Print the first number of the array
+            Console.WriteLine("First number of array:");
             Console.WriteLine(numbers[0]);
 
-            //Print the last number of the array            
+            //Print the last number of the array
+            Console.WriteLine("Last number of array:");
             Console.WriteLine(numbers[49]);
 
-            Console.WriteLine("All Numbers Original");
             //Use this method to print out your numbers from arrays or lists
-           
+            Console.WriteLine("All Numbers Original");
             NumberPrinter(numbers);
             Console.WriteLine("-------------------");
 
@@ -55,8 +56,8 @@ namespace CollectionsMasterConsoleUI
             /*      Hint: Array.____()      */
             Console.WriteLine("Sorted numbers:");
             Array.Sort(numbers);
-            Console.WriteLine(numbers);
-            
+            Console.WriteLine(string.Join(" ", numbers));
+
 
             Console.WriteLine("\n************End Arrays*************** \n");
             #endregion
@@ -69,12 +70,14 @@ namespace CollectionsMasterConsoleUI
             var numberList = new List<int>();
 
             //Print the capacity of the list to the console
+            Console.WriteLine("First Capacity:");
             Console.WriteLine(numberList.Count);
 
             //Populate the List with 50 random numbers between 0 and 50 you will need a method for this            
             Populater(numberList);
 
             //Print the new capacity
+            Console.WriteLine("New Capacity:");
             Console.WriteLine(numberList.Count);
 
             Console.WriteLine("---------------------");
@@ -107,37 +110,34 @@ namespace CollectionsMasterConsoleUI
             //Create a method that will remove all odd numbers from the list then print results
             Console.WriteLine("Evens Only!!");
             OddKiller(numberList);
-            
+            Console.WriteLine(string.Join(" ", numberList));
+
             Console.WriteLine("------------------");
 
             //Sort the list then print results
             Console.WriteLine("Sorted Evens!!");
             numberList.Sort();
-            Console.WriteLine(string.Join(",", numberList));
+            Console.WriteLine(string.Join(" ", numberList));
 
             Console.WriteLine("------------------");
 
             //Convert the list to an array and store that into a variable
-            
+            Console.WriteLine("List to array:");
+            int[] numArr = numberList.ToArray();
+            Console.WriteLine(string.Join(" ", numArr));
 
             //Clear the list
-            
+            numberList.Clear();
 
             #endregion
         }
         static void NumberPrinter(int[] numbers)
         {
-            foreach (var num in numbers)
-            {
-                Console.WriteLine(num);
-            }
+            Console.WriteLine(string.Join(" ", numbers));
         }
         static void NumberPrinter(List<int> numberList)
         {
-            foreach (var num in numberList)
-            {
-                Console.WriteLine(num);
-            }
+            Console.WriteLine(string.Join(" ", numberList));
         }
 
         private static void ThreeKiller(int[] numbers)
@@ -149,16 +149,18 @@ namespace CollectionsMasterConsoleUI
                     numbers[i] = 0;
                 }
             }
-            Console.WriteLine(numbers);
+            Console.WriteLine(string.Join(" ", numbers));
         }
 
         private static void OddKiller(List<int> numberList)
         {
-            foreach(var num in numberList)
+
+            for (int i = numberList.Count - 1; i >= 0; i--)
             {
-                if(num %2 != 0)
+               
+                if (numberList[i] %2 != 0)
                 {
-                    numberList.Remove(num);
+                    numberList.RemoveAt(i);
                 }
             }
         }
@@ -179,9 +181,9 @@ namespace CollectionsMasterConsoleUI
         private static void Populater(List<int> numberList)
         {
             Random rng = new Random();
-            for (int i = 0; i < numberList.Count; i++)
+            for (int i = 0; i < 50; i++)
             {
-                numberList[i] = rng.Next(0, 50);
+                numberList.Add(rng.Next(0, 50));
             }
 
         }
